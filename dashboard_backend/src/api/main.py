@@ -11,6 +11,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from src.api.routers import (
     dashboards_router,
     ingestion_router,
+    behavior_analytics_router,
     observability_router,
     realtime_router,
     saved_views_router,
@@ -30,6 +31,7 @@ openapi_tags: List[Dict[str, Any]] = [
     {"name": "Widgets", "description": "CRUD APIs for widgets within dashboards."},
     {"name": "Saved Views", "description": "Saved filter/view configurations per dashboard."},
     {"name": "Ingestion", "description": "Data ingestion endpoints for analytics events."},
+    {"name": "Behavior Analytics", "description": "In-memory behavior analytics endpoints (no persistence)."},
     {
         "name": "WebSocket",
         "description": "Real-time websocket endpoint. Connect to /ws/realtime?token=<JWT> and subscribe via messages.",
@@ -130,6 +132,7 @@ app.include_router(dashboards_router)
 app.include_router(widgets_router)
 app.include_router(saved_views_router)
 app.include_router(ingestion_router)
+app.include_router(behavior_analytics_router)
 app.include_router(observability_router)
 app.include_router(realtime_router)
 
